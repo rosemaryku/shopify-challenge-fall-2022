@@ -9,6 +9,15 @@ function App() {
   const [result, setResult] = useState();
   const [responses, setResponses] = useState([]);
 
+  const isClear = (responses) => {
+    return !responses.length > 0;
+  };
+
+  const removeResponses = () => {
+    ls.clear();
+    setResponses([]);
+  };
+
   useEffect(() => {
     let myResponses = ls.get("myResponses");
     setResponses(myResponses);
@@ -32,6 +41,10 @@ function App() {
             <ResponseItem key={index} item={item} />
           ))}
       </div>
+
+      <button disabled={isClear(responses)} onClick={removeResponses}>
+        Clear
+      </button>
     </div>
   );
 }
