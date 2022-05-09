@@ -1,4 +1,6 @@
-const PromptForm = ({
+import ls from "local-storage";
+
+const Search = ({
   promptInput,
   setPromptInput,
   setResult,
@@ -30,10 +32,12 @@ const PromptForm = ({
     const res = await response.json();
     // console.log("Success:", res.choices[0].text);
     setResult(res.choices[0].text);
-    setResponses([
+    let newResponses = [
       { prompt: promptInput, response: res.choices[0].text },
       ...responses,
-    ]);
+    ];
+    setResponses(newResponses);
+    ls.set("myResponses", newResponses);
     setPromptInput("");
   }
 
@@ -55,4 +59,4 @@ const PromptForm = ({
   );
 };
 
-export default PromptForm;
+export default Search;

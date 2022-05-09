@@ -1,17 +1,23 @@
 import "./App.css";
-import { useState } from "react";
-import PromptForm from "./components/PromptForm";
-import ResultItem from "./components/ResultItem";
+import ls from "local-storage";
+import { useState, useEffect } from "react";
+import Search from "./components/Search";
+import ResponseItem from "./components/ResultItem";
 
 function App() {
   const [promptInput, setPromptInput] = useState("");
   const [result, setResult] = useState();
   const [responses, setResponses] = useState([]);
 
+  useEffect(() => {
+    let myResponses = ls.get("myResponses");
+    setResponses(myResponses);
+  }, []);
+
   return (
     <div className="App">
       <h1>Fun with AI</h1>
-      <PromptForm
+      <Search
         promptInput={promptInput}
         setPromptInput={setPromptInput}
         setResult={setResult}
@@ -21,9 +27,10 @@ function App() {
 
       <h3>Responses</h3>
       <div>
-        {responses.map((item, index) => (
-          <ResultItem key={index} item={item} />
-        ))}
+        {responses !== null &&
+          responses.map((item, index) => (
+            <ResponseItem key={index} item={item} />
+          ))}
       </div>
     </div>
   );

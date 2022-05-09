@@ -1,6 +1,6 @@
 import React from "react";
 
-const ResultItem = ({ item }) => {
+const ResponseItem = ({ item }) => {
   return (
     <div>
       <b>Prompt:</b>
@@ -12,4 +12,4 @@ const ResultItem = ({ item }) => {
   );
 };
 
-export default ResultItem;
+export default ResponseItem;
