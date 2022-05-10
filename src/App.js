@@ -1,8 +1,8 @@
 import "./App.css";
 import ls from "local-storage";
 import { useState, useEffect } from "react";
-import Search from "./components/Search";
-import ResponseItem from "./components/ResultItem";
+import Search from "./components/Search/Search";
+import ResponseList from "./components/ResponseList/ResponseList";
 import Header from "./components/Header/Header";
 
 function App() {
@@ -34,12 +34,7 @@ function App() {
       />
 
       <h3>Responses</h3>
-      <div>
-        {responses !== null &&
-          responses.map((item, index) => (
-            <ResponseItem key={index} item={item} />
-          ))}
-      </div>
+      <ResponseList responses={responses} />
 
       <button disabled={isClear(responses)} onClick={removeResponses}>
         Clear
