@@ -1,4 +1,5 @@
 import ls from "local-storage";
+import "./Search.scss";
 
 const Search = ({
   promptInput,
@@ -30,7 +31,6 @@ const Search = ({
       }
     );
     const res = await response.json();
-    setResult(res.choices[0].text);
     let newResponses = [];
     if (responses == null) {
       newResponses = [{ prompt: promptInput, response: res.choices[0].text }];
@@ -47,18 +47,31 @@ const Search = ({
   }
 
   return (
-    <div>
-      <p>Enter prompt</p>
+    <div className="card">
+      <div className="banner">
+        <h4>
+          GPT-3 is a powerful AI model created by OpenAI. It can process plain
+          text prompts and produce outputs that are hard to distinguish from
+          human writing.
+        </h4>
+      </div>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="prompt">
+          <b>Enter a prompt below</b>
+        </label>
         <textarea
-          type="text"
+          id="prompt"
           name="prompt"
-          placeholder="Enter a prompt"
+          type="text"
+          rows="5"
+          cols="50"
           value={promptInput}
           onChange={(e) => setPromptInput(e.target.value)}
         />
         <br />
-        <input type="submit" value="Submit" />
+        <button type="submit" value="Submit">
+          Submit
+        </button>
       </form>
     </div>
   );

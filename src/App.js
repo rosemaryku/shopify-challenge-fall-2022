@@ -33,12 +33,13 @@ function App() {
         setResponses={setResponses}
       />
 
-      <h3>Responses</h3>
       <ResponseList responses={responses} />
 
-      <button disabled={isClear(responses)} onClick={removeResponses}>
-        Clear
-      </button>
+      <div>
+        <button disabled={isClear(responses)} onClick={removeResponses}>
+          Clear Responses
+        </button>
+      </div>
     </div>
   );
 }
