@@ -3,14 +3,14 @@ import ls from "local-storage";
 import { useState, useEffect } from "react";
 import Search from "./components/Search";
 import ResponseItem from "./components/ResultItem";
+import Header from "./components/Header/Header";
 
 function App() {
   const [promptInput, setPromptInput] = useState("");
-  const [result, setResult] = useState();
   const [responses, setResponses] = useState([]);
 
   const isClear = (responses) => {
-    return !responses.length > 0;
+    return responses == null || !responses.length > 0;
   };
 
   const removeResponses = () => {
@@ -25,11 +25,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Fun with AI</h1>
+      <Header />
       <Search
         promptInput={promptInput}
         setPromptInput={setPromptInput}
-        setResult={setResult}
         responses={responses}
         setResponses={setResponses}
       />

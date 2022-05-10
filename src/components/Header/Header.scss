@@ -1,0 +1,23 @@
+@import "../../theme";
+
+header {
+  margin-top: 32px;
+  margin-left: 5%;
+  text-align: left;
+
+  h1 {
+    color: $primaryColor;
+  }
+
+  span {
+    color: $primaryColorDark;
+    display: block;
+  }
+
+  @media (max-width: $screen-size-lg) {
+    h1 {
+      font-size: 30px;
+      transition: 2s;
+    }
+  }
+}

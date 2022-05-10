@@ -30,12 +30,17 @@ const Search = ({
       }
     );
     const res = await response.json();
-    // console.log("Success:", res.choices[0].text);
     setResult(res.choices[0].text);
-    let newResponses = [
-      { prompt: promptInput, response: res.choices[0].text },
-      ...responses,
-    ];
+    let newResponses = [];
+    if (responses == null) {
+      newResponses = [{ prompt: promptInput, response: res.choices[0].text }];
+    } else {
+      newResponses = [
+        { prompt: promptInput, response: res.choices[0].text },
+        ...responses,
+      ];
+    }
+
     setResponses(newResponses);
     ls.set("myResponses", newResponses);
     setPromptInput("");
