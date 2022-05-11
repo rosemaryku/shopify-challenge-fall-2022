@@ -1,22 +1,25 @@
 @import "../../theme";
 
 header {
-  margin-top: 32px;
-  text-align: center;
+  padding: 0.1% 5%;
+  text-align: left;
+  background-color: $primaryColor;
+  display: flex;
+  align-items: center;
 
   h1 {
-    color: $primaryColor;
+    color: white;
   }
 
-  span {
-    color: $primaryColorDark;
-    display: block;
+  img {
+    height: 40px;
+    padding: 15px;
   }
 
   @media (max-width: $screen-size-lg) {
     h1 {
-      font-size: 30px;
-      transition: 2s;
+      font-size: 28px;
+      transition: 1s;
     }
   }
 }

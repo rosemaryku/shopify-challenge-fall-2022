@@ -1,10 +1,11 @@
 import ls from "local-storage";
 import "./Search.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Search = ({ promptInput, setPromptInput, responses, setResponses }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [Loading, setLoading] = useState(false);
   const [engine, setEngine] = useState("text-curie-001");
+  const [btnDisabled, setBtnDisabled] = useState(true);
 
   const data = {
     prompt: promptInput,
@@ -15,8 +16,17 @@ const Search = ({ promptInput, setPromptInput, responses, setResponses }) => {
     presence_penalty: 0.0,
   };
 
+  const handleTextChange = (value) => {
+    setPromptInput(value);
+    if (value === "") {
+      setBtnDisabled(true);
+    } else {
+      setBtnDisabled(false);
+    }
+  };
+
   async function handleSubmit() {
-    setIsLoading(true);
+    setLoading(true);
     const response = await fetch(
       `https://api.openai.com/v1/engines/${engine}/completions`,
       {
@@ -41,7 +51,7 @@ const Search = ({ promptInput, setPromptInput, responses, setResponses }) => {
       ];
     }
     setResponses(newResponses);
-    setIsLoading(false);
+    setLoading(false);
     ls.set("myResponses", newResponses);
     setPromptInput("");
   }
@@ -49,16 +59,10 @@ const Search = ({ promptInput, setPromptInput, responses, setResponses }) => {
   return (
     <div className="card">
       <div className="banner">
-        <h4>
-          GPT-3 is a powerful AI model created by OpenAI. It can process plain
-          text prompts and produce outputs that are hard to distinguish from
-          human writing.
-        </h4>
+        <label htmlFor="prompt">
+          <h4>Ask a geography trivia question here:</h4>
+        </label>
       </div>
-
-      <label htmlFor="prompt">
-        <b>Ask a geography trivia question here:</b>
-      </label>
       <textarea
         id="prompt"
         name="prompt"
@@ -66,23 +70,29 @@ const Search = ({ promptInput, setPromptInput, responses, setResponses }) => {
         rows="5"
         cols="50"
         value={promptInput}
-        onChange={(e) => setPromptInput(e.target.value)}
+        placeholder="eg., what is the capital city of Canada?"
+        onChange={(e) => handleTextChange(e.target.value)}
       />
-      <br />
-      <select
-        value={engine}
-        aria-label="Default select example"
-        onChange={(e) => setEngine(e.target.value)}
-      >
-        <option value="text-curie-001">Curie</option>
-        <option value="text-ada-001">Ada</option>
-        <option value="text-babbage-001">Babbage</option>
-        <option value="text-davinci-002">Davinci</option>
-      </select>
 
-      <button type="submit" onClick={handleSubmit}>
-        {isLoading ? "Loading ..." : "Submit"}
-      </button>
+      <br />
+      <div className="filters">
+        <p>Choose a search engine:</p>
+
+        <select
+          value={engine}
+          aria-label="Default select example"
+          onChange={(e) => setEngine(e.target.value)}
+        >
+          <option value="text-curie-001">Curie</option>
+          <option value="text-ada-001">Ada</option>
+          <option value="text-babbage-001">Babbage</option>
+          <option value="text-davinci-002">Davinci</option>
+        </select>
+
+        <button type="submit" onClick={handleSubmit} disabled={btnDisabled}>
+          {Loading ? "Loading ..." : "Submit"}
+        </button>
+      </div>
     </div>
   );
 };

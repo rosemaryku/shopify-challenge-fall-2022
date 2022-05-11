@@ -3,16 +3,13 @@ import "./ResponseList.scss";
 
 const ResponseList = ({ responses }) => {
   return (
-    <div className="card">
-      <div className="responseList">
-        <h4>Responses</h4>
-      </div>
-      <div>
-        {responses !== null &&
-          responses.map((item, index) => (
-            <ResponseItem key={index} item={item} />
-          ))}
-      </div>
+    <div className="responseList">
+      <h4>Responses</h4>
+
+      {responses !== null &&
+        responses.map((item, index) => (
+          <ResponseItem key={index} item={item} />
+        ))}
     </div>
   );
 };
