@@ -3,13 +3,13 @@ import "./ResponseList.scss";
 
 const ResponseList = ({ responses }) => {
   return (
-    <div className="responseList">
-      <h4>Responses</h4>
-
-      {responses !== null &&
-        responses.map((item, index) => (
-          <ResponseItem key={index} item={item} />
-        ))}
+    <div>
+      <h2>Responses</h2>
+      {responses !== null ? (
+        responses.map((item, index) => <ResponseItem key={index} item={item} />)
+      ) : (
+        <p>No responses yet, submit a question above.</p>
+      )}
     </div>
   );
 };

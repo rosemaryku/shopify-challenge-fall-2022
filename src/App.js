@@ -9,15 +9,6 @@ function App() {
   const [promptInput, setPromptInput] = useState("");
   const [responses, setResponses] = useState([]);
 
-  const isClear = (responses) => {
-    return responses == null || !responses.length > 0;
-  };
-
-  const removeResponses = () => {
-    ls.clear();
-    setResponses([]);
-  };
-
   useEffect(() => {
     let myResponses = ls.get("myResponses");
     setResponses(myResponses);
@@ -32,14 +23,7 @@ function App() {
         responses={responses}
         setResponses={setResponses}
       />
-
       <ResponseList responses={responses} />
-
-      <div>
-        <button disabled={isClear(responses)} onClick={removeResponses}>
-          Clear Responses
-        </button>
-      </div>
     </div>
   );
 }

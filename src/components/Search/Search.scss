@@ -32,7 +32,7 @@
   transition: 2s;
   box-shadow: 0 4px 5px -5px $primaryColor;
 
-  h4 {
+  h1 {
     color: $primaryColor;
     text-align: center;
   }
@@ -40,26 +40,33 @@
 
 label {
   display: block;
-  margin: 10px;
-  margin-left: 5%;
+  // margin: 10px;
+  // margin-left: 5%;
   color: $primaryColorDark;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 textarea {
   margin-top: 40px;
   line-height: 1.5;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid $primaryColor;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+
+  &:focus {
+    outline: 1.5px solid $primaryColor;
+  }
 }
 
 button {
   background-color: $primaryColor;
   border: none;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
   margin: 5px;
-  padding: 8px 20px;
+  padding: 10px 20px;
   color: white;
   cursor: pointer;
   text-decoration: none;
@@ -69,8 +76,10 @@ button {
     box-shadow: 0 5px 25px 0 $primaryColorDark;
   }
   &:disabled {
-    opacity: 0.5;
-    cursor: default;
+    opacity: 0.7;
+    background-color: #000;
+    color: #fff;
+    cursor: not-allowed;
   }
 }
 
@@ -78,12 +87,23 @@ select {
   color: #000;
   padding: 0.5em;
   margin: 5px;
-  height: 40px;
+  height: 35px;
   padding-right: 2.5em;
-  border: 1;
   border-radius: 3px;
 }
 
 .filters {
   display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.searchEngine {
+  display: flex;
+  padding-bottom: 1rem;
+  align-items: center;
+
+  @media (max-width: $screen-size-sm) {
+    flex-direction: column;
+  }
 }
