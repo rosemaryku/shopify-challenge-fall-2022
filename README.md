@@ -2,6 +2,8 @@
 
 Geography Trivia is an application built with React which allows users to enter a geography-related question/prompt and receive an answer using GPT-3 a powerful AI model created by OpenAI (https://openai.com/api/). It can process plain text prompts and produce outputs that are hard to distinguish from human writing. This application was built as part of Shopify's 2022 Fall front-end development intern challenge.
 
+![Website Image](https://github.com/rosemaryku/shopify-challenge-fall-2022/blob/main/public/app_screenshot.png)
+
 This simple-to-use interface includes the following:
 
 - A form for entering text prompts
